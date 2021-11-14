@@ -86,43 +86,6 @@
   {%- assign footer_text_color_hover = footer_text_color | color_darken: 10 -%}
 {%- endif -%}
 
-<style>
-  .site-footer__hr {
-    border-bottom: 1px solid {{ section.settings.color_footer_bg | color_darken: 10 }};
-  }
-
-  .site-footer p,
-  .site-footer__linklist-item a,
-  .site-footer__rte a,
-  .site-footer h4,
-  .site-footer small,
-  .site-footer__copyright-content a,
-  .site-footer__newsletter-error,
-  .site-footer__social-icons .social-icons__link {
-    color: {{ section.settings.color_footer_text }};
-  }
-
-  .site-footer {
-    color: {{ section.settings.color_footer_text }};
-    background-color: {{ section.settings.color_footer_bg }};
-  }
-
-  .site-footer__rte a {
-    border-bottom: 1px solid {{ section.settings.color_footer_text }};
-  }
-
-  .site-footer__rte a:hover,
-  .site-footer__linklist-item a:hover,
-  .site-footer__copyright-content a:hover {
-    color: {{ footer_text_color_hover }};
-    border-bottom: 1px solid {{ footer_text_color_hover }};
-  }
-
-  .site-footer__social-icons .social-icons__link:hover {
-    color: {{ footer_text_color_hover }};
-  }
-</style>
-
 
 {%- capture payment_icon_markup -%}
   {%- if show_payment_icons -%}
@@ -139,221 +102,48 @@
   {%- endif -%}
 {%- endcapture -%}
 
-<footer class="site-footer critical-hidden" role="contentinfo" data-section-id="{{ section.id }}" data-section-type="footer-section">
-  <div class="page-width">
-    <div class="site-footer__content">
-      {%- for block in section.blocks -%}
-
-        <div class="site-footer__item
-                    {% if section.blocks.size == 1 %} site-footer__item--center{% endif %}
-                    {{ footer_item }}
-                    {% if block.type == 'newsletter' and section.blocks.size == 3 %}site-footer-newsletter__one-half{% endif %}"
-             {{ block.shopify_attributes }}>
-          <div class="site-footer__item-inner site-footer__item-inner--{{ block.type }}">
-
-            {%- if block.settings.title -%}
-              <p class="h4">{{ block.settings.title | escape }}</p>
-            {%- endif -%}
-
-            {%- case block.type -%}
-              {%- when 'newsletter' -%}
-                <div class="site-footer__newsletter
-                          {% if section.blocks.size == 1 %} site-footer__single-block--centered{% endif %}">
-                  {%- assign formId = 'ContactFooter' -%}
-                  {% form 'customer', id: formId, novalidate: 'novalidate' %}
-                    {%- if form.posted_successfully? -%}
-                      <p class="form-message form-message--success" tabindex="-1" data-form-status>
-                        {{ 'general.newsletter_form.confirmation' | t }}
-                      </p>
-                    {%- endif -%}
-                    <input type="hidden" name="contact[tags]" value="newsletter">
-                    <div class="input-group {% if form.errors %} input-group--error{% endif %}">
-                      <input type="email"
-                        name="contact[email]"
-                        id="{{ formId }}-email"
-                        class="input-group__field newsletter__input{% if form.errors %} input--error{% endif %}"
-                        value="{{ form.email }}"
-                        placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}"
-                        aria-label="{{ 'general.newsletter_form.email_placeholder' | t }}"
-                        aria-required="true"
-                        required
-                        autocorrect="off"
-                        autocapitalize="off"
-                        {% if form.errors %}
-                          aria-invalid="true"
-                          aria-describedby="{{ formId }}-email-error"
-                          data-form-status
-                        {% endif %}>
-                      <span class="input-group__btn">
-                        <button type="submit" class="btn newsletter__submit" name="commit" >
-                          <span class="newsletter__submit-text--large">{{ 'general.newsletter_form.submit' | t }}</span>
-                        </button>
-                      </span>
-                    </div>
-                    {% if form.errors contains 'email' %}
-                      <span id="{{ formId }}-email-error" class="input-error-message">
-                        <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
-                        {% include 'icon-error' %}
-                        <span class="site-footer__newsletter-error">{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
-                      </span>
-                    {% endif %}
-                  {% endform %}
-                </div>
-
-              {%- when 'text' -%}
-                {%- if block.settings.text != blank -%}
-                  <div class="site-footer__rte
-                              {% if section.blocks.size == 1 %} site-footer__single-block--centered{% endif %}">
-                      {{ block.settings.text }}
-                  </div>
-                {%- endif -%}
-
-              {%- when 'link_list' -%}
-                {%- assign footer_linklist = block.settings.menu -%}
-                  <ul class="site-footer__linklist
-                            {% if inline_list %}list--inline{% endif %}">
-                    {%- for link in linklists[footer_linklist].links -%}
-                      <li class="site-footer__linklist-item">
-                        <a href="{{ link.url }}"
-                          {% if link.current %} aria-current="page"{% endif %}
-                        >
-                          {{ link.title | escape }}
-                        </a>
-                      </li>
-                    {%- endfor -%}
-                  </ul>
-
-            {%- endcase -%}
-
-          </div>
-        </div>
-      {%- endfor -%}
-    </div>
-  </div>
-
-  <hr class="site-footer__hr">
-
-  {%- assign socials = "Facebook Twitter Pinterest Instagram Tumblr Snapchat YouTube Vimeo" | split: ' ' -%}
-
-  <div class="page-width">
-    <div class="grid grid--no-gutters small--text-center grid--footer-float-right">
-      {%- if show_selectors -%}
-        <div class="grid__item one-half small--one-whole">
-          {%- form 'localization', class: 'selectors-form', data-disclosure-form: '' -%}
-            {%- if country_selector -%}
-              <div class="selectors-form__item">
-                <h2 class="visually-hidden" id="country-heading">
-                  {{ 'general.country.dropdown_label' | t }}
-                </h2>
-                {%- assign current_currency_symbol = localization.country.currency.symbol -%}
-                {%- assign current_currency_iso_code = localization.country.currency.iso_code -%}
-                <div class="disclosure" data-disclosure-country>
-                  <button type="button" class="disclosure__toggle" aria-expanded="false" aria-controls="country-list" aria-describedby="country-heading" data-disclosure-toggle>
-                    {%- if current_currency_symbol -%}
-                      {{ localization.country.name }} ({{ current_currency_iso_code }} {{ current_currency_symbol }})
-                    {%- else -%}
-                      {{ localization.country.name }} ({{ current_currency_iso_code }})
-                    {%- endif -%}
-                  </button>
-                  <ul id="country-list" class="disclosure-list" data-disclosure-list>
-                    {% for country in form.available_countries %}
-                      {%- assign currency_symbol = country.currency.symbol -%}
-                      {%- assign currency_iso_code = country.currency.iso_code -%}
-                      <li class="disclosure-list__item {% if country.iso_code == localization.country.iso_code %}disclosure-list__item--current{% endif %}">
-                        <a class="disclosure-list__option" href="#" {% if country.iso_code == localization.country.iso_code %}aria-current="true"{% endif %} data-value="{{ country.iso_code }}" data-disclosure-option>
-                          {%- if currency_symbol -%}
-                            {{ country.name }} ({{ currency_iso_code }} {{ currency_symbol }})
-                          {%- else -%}
-                            {{ country.name }} ({{ currency_iso_code }})
-                          {%- endif -%}
-                        </a>
-                      </li>
-                    {%- endfor -%}
-                  </ul>
-                  <input type="hidden" name="country_code" id="CountrySelector" value="{{ localization.country.iso_code }}" data-disclosure-input/>
-                </div>
-              </div>
-            {%- endif -%}
-
-            {%- if locale_selector -%}
-              <div class="selectors-form__item">
-                <h2 class="visually-hidden" id="lang-heading">
-                  {{ 'general.language.dropdown_label' | t }}
-                </h2>
-
-                <div class="disclosure" data-disclosure-locale>
-                  <button type="button" class="disclosure__toggle" aria-expanded="false" aria-controls="lang-list" aria-describedby="lang-heading" data-disclosure-toggle>
-                    {{ localization.language.endonym_name }}
-                  </button>
-                  <ul id="lang-list" class="disclosure-list" data-disclosure-list>
-                    {% for language in localization.available_languages %}
-                      <li class="disclosure-list__item {% if language.iso_code == localization.language.iso_code %}disclosure-list__item--current{% endif %}">
-                        <a class="disclosure-list__option" href="#" lang="{{ language.iso_code }}" {% if language.iso_code == localization.language.iso_code %}aria-current="true"{% endif %} data-value="{{ language.iso_code }}" data-disclosure-option>
-                          {{ language.endonym_name }}
-                        </a>
-                      </li>
-                    {%- endfor -%}
-                  </ul>
-                  <input type="hidden" name="locale_code" id="LocaleSelector" value="{{ form.current_locale.iso_code }}" data-disclosure-input/>
-                </div>
-              </div>
-            {%- endif -%}
-          {%- endform -%}
-        </div>
-      {%- else -%}
-        <div class="grid__item small--hide {{ payment_width_class }} {% if show_payment_icons %}site-footer-item-center-vertically{% endif %}">{{ payment_icon_markup }}</div>
-      {%- endif -%}
-
-      <div class="grid__item {% if show_selectors or show_payment_icons %}one-half{% endif %} small--one-whole site-footer-item-tall">
-        {%- if social_icons -%}
-          <ul class="list--inline site-footer__social-icons social-icons site-footer__icon-list">
-            {%- for social in socials -%}
-              {%- assign social_link = social | prepend: 'social_' | append: '_link' | downcase -%}
-              {%- assign icon_link = social | prepend: 'icon-' | downcase -%}
-              {%- if settings[social_link] != blank -%}
-                <li class="social-icons__item">
-                  <a class="social-icons__link" href="{{ settings[social_link] | escape }}" aria-describedby="a11y-external-message">
-                    {%- include icon_link -%}
-                    <span class="icon__fallback-text">{{ social }}</span>
-                  </a>
-                </li>
-              {%- endif -%}
-            {%- endfor -%}
-
-            {%- if request.page_type == 'blog' or request.page_type == 'article' -%}
-              <li>
-                <a class="social-icons__link" href="{{ shop.url }}{{ blog.url }}.atom">
-                  {% include 'icon-rss' %}
-                  <span class="icon__fallback-text">RSS</span>
-                </a>
-              </li>
-            {%- endif -%}
-          </ul>
-        {%- else -%}
-          <div class="small--hide site-footer-item-align-right {% if show_selectors or show_payment_icons %}site-footer-item-center-vertically{% endif %}">
-            <small class="site-footer__copyright-content">&copy; {{ 'now' | date: "%Y" }}, {{ shop.name | link_to: routes.root_url }}</small>
-            <small class="site-footer__copyright-content site-footer__copyright-content-powered-by">{{ powered_by_link }}</small>
-          </div>
-        {%- endif -%}
+<footer class="section">
+  <div class="container">
+    <div class="w-layout-grid footer">
+      <a href="index.html" id="w-node-_88a386dd-8f07-0c34-70f0-2d9f87e2971b-87e29718" aria-current="page" class="logo-link w-inline-block w--current">
+        <div class="text-block-8">Store</div>
+      </a>
+        {%comment%}  Go through each link in footer menu {%endcomment%}
+        {%-for block in section.blocks-%}
+          {%-if block.type == "link_list"-%}
+          <div id="w-node-_88a386dd-8f07-0c34-70f0-2d9f87e2971d-87e29718" class="label">{{ block.settings.footer_menu_title }}</div>
+          <div id="w-node-_88a386dd-8f07-0c34-70f0-2d9f87e2971f-87e29718" class="links-section-footer">
+            {%-assign footer_list = block.settings.footer_linklist-%}
+            {%- assign footer_menu_array = linklists[footer_list].links -%}
+            {%- for link in footer_menu_array -%}
+              <a href="{{link.url}}" class="footer-link">{{link.title}}</a>
+            {%-endfor-%}
+            {%break%}
+          {%-endif-%}
+        {%-endfor-%}
+      
       </div>
-
-      {%- if show_selectors -%}
-        <div class="grid__item small--hide {{ payment_width_class }}">{{ payment_icon_markup }}</div>
-      {%- endif -%}
-
-      <div class="grid__item medium-up--hide {{ payment_width_class }} small--one-whole">{{ payment_icon_markup }}</div>
-
-      {%- if social_icons and show_selectors -%}
-        <div class="grid__item small--hide site-footer-item-align-right {% if show_payment_icons %}one-half{% endif %}">
-          <small class="site-footer__copyright-content">&copy; {{ 'now' | date: "%Y" }}, {{ shop.name | link_to: routes.root_url }}</small>
-          <small class="site-footer__copyright-content site-footer__copyright-content--powered-by">{{ powered_by_link }}</small>
-        </div>
-      {%- endif -%}
-
-      <div class="grid__item small--one-whole {{ copyright_show_class }} site-footer-item-align-right">
-        <small class="site-footer__copyright-content">&copy; {{ 'now' | date: "%Y" }}, {{ shop.name | link_to: routes.root_url }}</small>
-        <small class="site-footer__copyright-content site-footer__copyright-content--powered-by">{{ powered_by_link }}</small>
+      <div id="w-node-_88a386dd-8f07-0c34-70f0-2d9f87e29736-87e29718" class="label">Follow</div>
+      <div id="w-node-_88a386dd-8f07-0c34-70f0-2d9f87e29738-87e29718" class="links-section-footer">
+        {%- if settings.social_twitter_link != blank -%}
+          <a href="{{settings.social_twitter_link}}" target="_blank" class="footer-link">Twitter</a>
+        {%-endif-%}
+        {%- if settings.social_facebook_link != blank -%}
+          <a href="{{settings.social_facebook_link}}" target="_blank" class="footer-link">Facebook</a>
+        {%-endif-%}
+        {%- if settings.social_pinterest_link != blank -%}
+          <a href="{{settings.social_pinterest_link}} target="_blank" class="footer-link">Pinterest</a>
+        {%-endif-%}
+        {%- if settings.social_instagram_link != blank -%}
+          <a href="{{settings.social_instagram_link}} target="_blank" class="footer-link">Instagram</a>
+        {%-endif-%}
+        {%- if settings.social_youtube_link != blank -%}
+          <a href="{{settings.social_youtube_link}} target="_blank" class="footer-link">YouTube</a>
+        {%-endif-%}
       </div>
+      <a id="w-node-_88a386dd-8f07-0c34-70f0-2d9f87e2973f-87e29718" href="#" class="made-with-webflow w-inline-block">
+        <div class="paragraph-tiny">Made By Pierre Web Consulting</div>
+      </a>
     </div>
   </div>
 </footer>
@@ -681,107 +471,18 @@
   "blocks": [
     {
       "type": "link_list",
-      "name": {
-        "cs": "Nabídka",
-        "da": "Menu",
-        "de": "Menü",
-        "en": "Menu",
-        "es": "Menú",
-        "fi": "Valikko",
-        "fr": "Menu",
-        "it": "Menu",
-        "ja": "メニュー",
-        "ko": "메뉴",
-        "nb": "Meny",
-        "nl": "Menu",
-        "pl": "Menu",
-        "pt-BR": "Menu",
-        "pt-PT": "Menu",
-        "sv": "Meny",
-        "th": "เมนู",
-        "tr": "Menü",
-        "vi": "Menu",
-        "zh-CN": "菜单",
-        "zh-TW": "選單"
-      },
+      "name": "Menu",
       "settings": [
         {
-          "type": "text",
-          "id": "title",
-          "label": {
-            "cs": "Nadpis",
-            "da": "Overskrift",
-            "de": "Überschrift",
-            "en": "Heading",
-            "es": "Título",
-            "fi": "Otsake",
-            "fr": "Titre",
-            "it": "Titolo",
-            "ja": "見出し",
-            "ko": "제목",
-            "nb": "Overskrift",
-            "nl": "Kop",
-            "pl": "Nagłówek",
-            "pt-BR": "Título",
-            "pt-PT": "Título",
-            "sv": "Rubrik",
-            "th": "ส่วนหัว",
-            "tr": "Başlık",
-            "vi": "Tiêu đề",
-            "zh-CN": "标题",
-            "zh-TW": "標題"
-          },
-          "default": {
-            "cs": "Rychlé odkazy",
-            "da": "Genvejslinks",
-            "de": "Quick-Links",
-            "en": "Quick links",
-            "es": "Enlaces rápidos",
-            "fi": "Pikalinkit",
-            "fr": "Liens rapides",
-            "it": "Link rapidi",
-            "ja": "クイックリンク",
-            "ko": "빠른 링크",
-            "nb": "Hurtigkoblinger",
-            "nl": "Snelle links",
-            "pl": "Szybkie linki",
-            "pt-BR": "Links rápidos",
-            "pt-PT": "Ligações rápidas",
-            "sv": "Snabblänkar",
-            "th": "ลิงก์ด่วน",
-            "tr": "Hızlı bağlantılar",
-            "vi": "Liên kết nhanh",
-            "zh-CN": "快速链接",
-            "zh-TW": "快速連結"
-          }
+         "type": "text",
+         "label": "Header",
+         "default": "Menu",
+         "id": "footer_menu_title"
         },
         {
           "type": "link_list",
-          "id": "menu",
-          "label": {
-            "cs": "Nabídka",
-            "da": "Menu",
-            "de": "Menü",
-            "en": "Menu",
-            "es": "Menú",
-            "fi": "Valikko",
-            "fr": "Menu",
-            "it": "Menu",
-            "ja": "メニュー",
-            "ko": "메뉴",
-            "nb": "Meny",
-            "nl": "Menu",
-            "pl": "Menu",
-            "pt-BR": "Menu",
-            "pt-PT": "Menu",
-            "sv": "Meny",
-            "th": "เมนู",
-            "tr": "Menü",
-            "vi": "Menu",
-            "zh-CN": "菜单",
-            "zh-TW": "選單"
-          },
-          "default": "footer"
+          "id": "footer_linklist",
+          "label": "which menu?"
         }
       ]
     },
