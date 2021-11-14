@@ -141,8 +141,8 @@
           <a href="{{settings.social_youtube_link}} target="_blank" class="footer-link">YouTube</a>
         {%-endif-%}
       </div>
-      <a id="w-node-_88a386dd-8f07-0c34-70f0-2d9f87e2973f-87e29718" href="#" class="made-with-webflow w-inline-block">
-        <div class="paragraph-tiny">Made By Pierre Web Consulting</div>
+      <a id="w-node-_88a386dd-8f07-0c34-70f0-2d9f87e2973f-87e29718" href="{{section.settings.footer_copyright_link}}" class="made-with-webflow w-inline-block">
+        <div class="paragraph-tiny">{{section.settings.footer_copyright_text}}</div>
       </a>
     </div>
   </div>
@@ -177,6 +177,19 @@
   },
   "max_blocks": 4,
   "settings": [
+    {
+      "label": "Copyright Text",
+      "type": "text",
+      "id": "footer_copyright_text",
+      "default" : "Made By Pierre Web Consulting"
+    },
+    {
+      "type":"text",
+      "id": "footer_copyright_link",
+      "label": "Copyright Link",
+      "info": "I recommend putting an absolute link like https://mydomain.com",
+      "default": "https://pierrewebdev.com"
+    },
     {
       "type": "header",
       "content": {
