@@ -11,4 +11,26 @@
 
 .w-nav-overlay [data-nav-menu-open]{
     background-color: #0c0b0b;
+    width: 100%;
+}
+
+/*For the menu bar icon in mobile header*/
+i.fas.fa-bars::after{
+    content: "\f0c9";
+}
+
+i.fas.fa-bars::before{
+    content: "Menu";
+    margin-right: 12px;
+    font-size: 30px;
+}
+
+/*For the icons to the right of the header*/
+.w-commerce-commercecartwrapper{
+    display: flex;
+}
+
+/*Make search icon in header white*/
+.site-header__icon.site-header__search-toggle{
+    color: white;
 }
