@@ -1,0 +1,4 @@
+/*Makes the Text in the logo white if it is a text-based logo*/
+.text-logo{
+    color: white !important;
+}
