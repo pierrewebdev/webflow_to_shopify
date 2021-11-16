@@ -2,3 +2,9 @@
 .text-logo{
     color: white !important;
 }
+
+/*Makes nav links in header white*/
+.navigation-wrap nav a {
+    color: #fafafa !important;
+    text-decoration: none;
+}

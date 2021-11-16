@@ -3164,7 +3164,7 @@
     -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
-    color: #fafafa;
+    background-color: transparent;
   }
   
   .cart-container {
@@ -4787,11 +4787,6 @@
   
     .menu-button.w--open {
       background-color: transparent;
-    }
-  
-    .navigation-wrap {
-      background-color: transparent;
-      color: #fff;
     }
   
     .collection-wrap {

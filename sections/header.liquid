@@ -263,7 +263,7 @@
         {% else %}
           <div class="h2 site-header__logo">
         {% endif %}
-          {% if section.settings.logo %}
+          {% if section.settings.logo %} <!-- This only executes if the user has placed an image for a logo-->
             {%- assign img_url = section.settings.logo | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
             <a href="{{ routes.root_url }}" class="site-header__logo-image{% if section.settings.align_logo == 'center' %} site-header__logo-image--centered{% endif %}" data-image-loading-animation>
               {% capture logo_alt %}{{ section.settings.logo.alt | default: shop.name }}{% endcapture %}
@@ -292,13 +292,13 @@
           </div>
         {% endif %}
       </div>
+
       <div class="navigation-wrap">
-        <nav role="navigation" class="navigation-items w-nav-menu">
-          <a href="#" class="navigation-item">Home</a>
-          <a href="#" class="navigation-item w-nav-link">Collections</a>
-          <a href="about.html" class="navigation-item w-nav-link">About</a>
-          <a href="contact.html" class="navigation-item w-nav-link">Contact</a>
-        </nav>
+        {% if section.settings.align_logo == 'left' %}
+          <nav class="grid__item medium-up--one-half small--hide navigation-items w-nav-menu" id="AccessibleNav" role="navigation">
+            {% include 'site-nav', linklist: section.settings.main_linklist %}
+          </nav>
+        {% endif %}
         <div class="menu-button w-nav-button">
           <div class="w-embed"><i class="fas fa-bars"></i></div>
         </div>
