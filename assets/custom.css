@@ -8,3 +8,7 @@
     color: #fafafa !important;
     text-decoration: none;
 }
+
+.w-nav-overlay [data-nav-menu-open]{
+    background-color: #0c0b0b;
+}

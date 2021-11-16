@@ -7,7 +7,6 @@
     Usage:
     {% include 'site-nav', linklist: section.settings.main_linklist, wrapper_class: 'site-nav--centered' %}
 {% endcomment %}
-<ul class="site-nav list--inline{% if wrapper_class != blank %} {{ wrapper_class }}{% endif %}" id="SiteNav">
   {% for link in linklists[linklist].links %}
     {%- assign child_list_handle = link.title | handleize -%}
 
@@ -23,7 +22,7 @@
 
     {% if link.links != blank %}
       <li class="site-nav--has-dropdown{% if three_level_nav %} site-nav--has-centered-dropdown{% endif %}{% if link.active %} site-nav--active{% endif %}" data-has-dropdowns>
-        <button class="site-nav__link site-nav__link--main site-nav__link--button{% if link.child_active %} site-nav__link--active{% endif %} navigation-item" type="button" aria-expanded="false" aria-controls="SiteNavLabel-{{ child_list_handle }}">
+        <button class="site-nav__link site-nav__link--main site-nav__link--button{% if link.child_active %} site-nav__link--active{% endif %}" type="button" aria-expanded="false" aria-controls="SiteNavLabel-{{ child_list_handle }}">
           <span class="site-nav__label">{{ link.title | escape }}</span>{% include 'icon-chevron-down' %}
         </button>
 
@@ -79,14 +78,11 @@
         </div>
       </li>
     {% else %}
-      <li {% if link.active %} class="site-nav--active"{% endif %}>
         <a href="{{ link.url }}"
-          class="site-nav__link site-nav__link--main{% if link.active %} site-nav__link--active{% endif %}"
+          class="site-nav__link site-nav__link--main{% if link.active %} site-nav__link--active{% endif %} navigation-item w-nav-link"
           {% if link.current %} aria-current="page"{% endif %}
         >
           <span class="site-nav__label">{{ link.title | escape }}</span>
         </a>
-      </li>
     {% endif %}
   {% endfor %}
-</ul>
