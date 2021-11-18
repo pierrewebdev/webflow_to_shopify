@@ -42,6 +42,10 @@ i.fas.fa-bars::before{
 }
 
 @media only screen and (max-width: 991px){
+    .grid__item{
+        padding-left: 0px;
+    }
+
     .site-header__icon.site-header__search-toggle{
         display: none;
     }
