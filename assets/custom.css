@@ -76,3 +76,12 @@ i.fas.fa-bars::before{
         margin: 0 5px;
     }
 }
+
+/*CSS to put search bar on top of main navigation when search icon is pressed*/
+.search-bar__interior{
+    z-index: 2;
+}
+
+.desktop.navigation.w-nav{
+    z-index: 1;
+}
