@@ -30,7 +30,45 @@ i.fas.fa-bars::before{
     display: flex;
 }
 
-/*Make search icon in header white*/
+/*CSS for mobile version of menu at viewports smaller than 991px in width*/
 .site-header__icon.site-header__search-toggle{
     color: white;
+}
+
+@media only screen and (min-width: 990px){
+    .mobile.navigation.w-nav{
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 991px){
+    .site-header__icon.site-header__search-toggle{
+        display: none;
+    }
+
+    .grid__item.medium-up--one-quarter.logo-align--left{
+        width: 100%;
+    }
+
+    .desktop.navigation.w-nav{
+        display: none;
+    }
+
+    .mobile.navigation.w-nav .navigation-items h1{
+        text-align: center;
+    }
+
+    .mobile.navigation.w-nav .navigation-items{
+        flex-direction: column;
+    }
+
+    .menu-and-cart{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .menu-and-cart *{
+        margin: 0 5px;
+    }
 }

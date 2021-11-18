@@ -251,7 +251,7 @@
   </header>
 
   <!-- Header Component from Webflow-->
-  <div data-collapse="medium" data-animation="default" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navigation w-nav">
+  <div data-collapse="medium" data-animation="default" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="desktop navigation w-nav">
     <div class="navigation-items">
         <div class="grid__item {{ logo_classes }}">
         {% comment %}
@@ -317,84 +317,88 @@
           <div class="w-inline-block">Cart</div>
           <div class="w-commerce-commercecartopenlinkcount cart-quantity-2">0</div>
         </a>
-        <div data-node-type="commerce-cart-container-wrapper" style="display:none" class="w-commerce-commercecartcontainerwrapper w-commerce-commercecartcontainerwrapper--cartType-rightSidebar">
-          <div data-node-type="commerce-cart-container" class="w-commerce-commercecartcontainer">
-            <div class="w-commerce-commercecartheader">
-              <h4 class="w-commerce-commercecartheading">Your Cart</h4>
-              <a href="#" data-node-type="commerce-cart-close-link" class="w-commerce-commercecartcloselink w-inline-block"><svg width="16px" height="16px" viewbox="0 0 16 16">
-                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                    <g fill-rule="nonzero" fill="#333333">
-                      <polygon points="6.23223305 8 0.616116524 13.6161165 2.38388348 15.3838835 8 9.76776695 13.6161165 15.3838835 15.3838835 13.6161165 9.76776695 8 15.3838835 2.38388348 13.6161165 0.616116524 8 6.23223305 2.38388348 0.616116524 0.616116524 2.38388348 6.23223305 8"></polygon>
-                    </g>
-                  </g>
-                </svg></a>
-            </div>
-            <div class="w-commerce-commercecartformwrapper">
-              <form data-node-type="commerce-cart-form" style="display:none" class="w-commerce-commercecartform">
-                <script type="text/x-wf-template" id="wf-template-a2777340-7d65-282a-8df7-80a56c4c808e"></script>
-                <div class="w-commerce-commercecartlist" data-wf-collection="database.commerceOrder.userItems" data-wf-template-id="wf-template-a2777340-7d65-282a-8df7-80a56c4c808e"></div>
-                <div class="w-commerce-commercecartfooter">
-                  <div class="w-commerce-commercecartlineitem">
-                    <div>Subtotal</div>
-                    <div class="w-commerce-commercecartordervalue"></div>
-                  </div>
-                  <div>
-                    <div data-node-type="commerce-cart-quick-checkout-actions">
-                      <a data-node-type="commerce-cart-apple-pay-button" style="background-image:-webkit-named-image(apple-pay-logo-white);background-size:100% 50%;background-position:50% 50%;background-repeat:no-repeat" class="w-commerce-commercecartapplepaybutton">
-                        <div></div>
-                      </a>
-                      <a data-node-type="commerce-cart-quick-checkout-button" style="display:none" class="w-commerce-commercecartquickcheckoutbutton"><svg class="w-commerce-commercequickcheckoutgoogleicon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewbox="0 0 16 16">
-                          <defs>
-                            <polygon id="google-mark-a" points="0 .329 3.494 .329 3.494 7.649 0 7.649"></polygon>
-                            <polygon id="google-mark-c" points=".894 0 13.169 0 13.169 6.443 .894 6.443"></polygon>
-                          </defs>
-                          <g fill="none" fill-rule="evenodd">
-                            <path fill="#4285F4" d="M10.5967,12.0469 L10.5967,14.0649 L13.1167,14.0649 C14.6047,12.6759 15.4577,10.6209 15.4577,8.1779 C15.4577,7.6339 15.4137,7.0889 15.3257,6.5559 L7.8887,6.5559 L7.8887,9.6329 L12.1507,9.6329 C11.9767,10.6119 11.4147,11.4899 10.5967,12.0469"></path>
-                            <path fill="#34A853" d="M7.8887,16 C10.0137,16 11.8107,15.289 13.1147,14.067 C13.1147,14.066 13.1157,14.065 13.1167,14.064 L10.5967,12.047 C10.5877,12.053 10.5807,12.061 10.5727,12.067 C9.8607,12.556 8.9507,12.833 7.8887,12.833 C5.8577,12.833 4.1387,11.457 3.4937,9.605 L0.8747,9.605 L0.8747,11.648 C2.2197,14.319 4.9287,16 7.8887,16"></path>
-                            <g transform="translate(0 4)">
-                              <mask id="google-mark-b" fill="#fff">
-                                <use xlink:href="#google-mark-a"></use>
-                              </mask>
-                              <path fill="#FBBC04" d="M3.4639,5.5337 C3.1369,4.5477 3.1359,3.4727 3.4609,2.4757 L3.4639,2.4777 C3.4679,2.4657 3.4749,2.4547 3.4789,2.4427 L3.4939,0.3287 L0.8939,0.3287 C0.8799,0.3577 0.8599,0.3827 0.8459,0.4117 C-0.2821,2.6667 -0.2821,5.3337 0.8459,7.5887 L0.8459,7.5997 C0.8549,7.6167 0.8659,7.6317 0.8749,7.6487 L3.4939,5.6057 C3.4849,5.5807 3.4729,5.5587 3.4639,5.5337" mask="url(#google-mark-b)"></path>
-                            </g>
-                            <mask id="google-mark-d" fill="#fff">
-                              <use xlink:href="#google-mark-c"></use>
-                            </mask>
-                            <path fill="#EA4335" d="M0.894,4.3291 L3.478,6.4431 C4.113,4.5611 5.843,3.1671 7.889,3.1671 C9.018,3.1451 10.102,3.5781 10.912,4.3671 L13.169,2.0781 C11.733,0.7231 9.85,-0.0219 7.889,0.0001 C4.941,0.0001 2.245,1.6791 0.894,4.3291" mask="url(#google-mark-d)"></path>
-                          </g>
-                        </svg><svg class="w-commerce-commercequickcheckoutmicrosofticon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewbox="0 0 16 16">
-                          <g fill="none" fill-rule="evenodd">
-                            <polygon fill="#F05022" points="7 7 1 7 1 1 7 1"></polygon>
-                            <polygon fill="#7DB902" points="15 7 9 7 9 1 15 1"></polygon>
-                            <polygon fill="#00A4EE" points="7 15 1 15 1 9 7 9"></polygon>
-                            <polygon fill="#FFB700" points="15 15 9 15 9 9 15 9"></polygon>
-                          </g>
-                        </svg>
-                        <div>Pay with browser.</div>
-                      </a>
-                    </div>
-                    <a href="checkout.html" value="Continue to Checkout" data-node-type="cart-checkout-button" class="w-commerce-commercecartcheckoutbutton" data-loading-text="Hang Tight...">Continue to Checkout</a>
-                  </div>
-                </div>
-              </form>
-              <div class="w-commerce-commercecartemptystate">
-                <div>No items found.</div>
-              </div>
-              <div style="display:none" data-node-type="commerce-cart-error" class="w-commerce-commercecarterrorstate">
-                <div class="w-cart-error-msg" data-w-cart-quantity-error="Product is not available in this quantity." data-w-cart-general-error="Something went wrong when adding this item to the cart." data-w-cart-checkout-error="Checkout is disabled on this site." data-w-cart-cart_order_min-error="The order minimum was not met. Add more items to your cart to continue." data-w-cart-subscription_error-error="Before you purchase, please use your email invite to verify your address so we can send order updates.">Product is not available in this quantity.</div>
-              </div>
-            </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Webflow Header Component Mobile Version -->
+  <div data-collapse="medium" data-animation="default" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="mobile navigation w-nav">
+    <div class="navigation-items">
+      <div class="grid__item {{ logo_classes }}">
+        {% comment %}
+          Use the uploaded logo from theme settings if enabled.
+          Site name gets precedence with H1 tag on homepage, div on other pages.
+        {% endcomment %}
+        {% if request.page_type == 'index' %}
+          <h1 class="h2 site-header__logo">
+        {% else %}
+          <div class="h2 site-header__logo">
+        {% endif %}
+          {% if section.settings.logo %} <!-- This only executes if the user has placed an image for a logo-->
+            {%- assign img_url = section.settings.logo | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+            <a href="{{ routes.root_url }}" class="site-header__logo-image{% if section.settings.align_logo == 'center' %} site-header__logo-image--centered{% endif %}" data-image-loading-animation>
+              {% capture logo_alt %}{{ section.settings.logo.alt | default: shop.name }}{% endcapture %}
+              <img class="lazyload js"
+                   src="{{ section.settings.logo | img_url: '300x300' }}"
+                   data-src="{{ img_url }}"
+                   data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                   data-aspectratio="{{ section.settings.logo.aspect_ratio }}"
+                   data-sizes="auto"
+                   alt="{{ logo_alt | escape }}"
+                   style="max-width: {{ section.settings.logo_max_width }}px">
+              <noscript>
+                {% capture image_size %}{{ section.settings.logo_max_width | escape }}x{% endcapture %}
+                <img src="{{ section.settings.logo | img_url: image_size }}"
+                     srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
+                     alt="{{ section.settings.logo.alt | default: shop.name }}"
+                     style="max-width: {{ section.settings.logo_max_width }}px;">
+              </noscript>
+            </a>
+          {% else %}
+            <a class="site-header__logo-link {% unless section.settings.logo %} text-logo{% endunless %}" href="{{ routes.root_url }}">{{ shop.name }}</a>
+          {% endif %}
+        {% if request.page_type == 'index' %}
+          </h1>
+        {% else %}
           </div>
+        {% endif %}
+      </div>
+
+      <div class = "menu-and-cart">
+        <div class="navigation-wrap">
+          {% if section.settings.align_logo == 'left' %}
+            <nav class="grid__item medium-up--one-half small--hide navigation-items w-nav-menu" id="AccessibleNav" role="navigation">
+              {% include 'site-nav', linklist: section.settings.main_linklist %}
+            </nav>
+          {% endif %}
+
+          <div class="menu-button w-nav-button">
+            <div class="w-embed"><i class="fas fa-bars"></i></div>
+          </div>
+        </div>
+        <div data-node-type="commerce-cart-wrapper" data-open-product="" data-wf-cart-type="rightSidebar" data-wf-cart-query="" data-wf-page-link-href-prefix="" class="w-commerce-commercecartwrapper">
+          <button type="button" class="btn--link site-header__icon site-header__search-toggle js-drawer-open-top" data-predictive-search-open-drawer>
+            {% include 'icon-search' %}
+            <span class="icon__fallback-text">{{ 'layout.navigation.search' | t }}</span>
+          </button>
+          <a href="#" data-node-type="commerce-cart-open-link" class="w-commerce-commercecartopenlink cart-button w-inline-block"><svg class="w-commerce-commercecartopenlinkicon" width="17px" height="17px" viewbox="0 0 17 17">
+              <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <path d="M2.60592789,2 L0,2 L0,0 L4.39407211,0 L4.84288393,4 L16,4 L16,9.93844589 L3.76940945,12.3694378 L2.60592789,2 Z M15.5,17 C14.6715729,17 14,16.3284271 14,15.5 C14,14.6715729 14.6715729,14 15.5,14 C16.3284271,14 17,14.6715729 17,15.5 C17,16.3284271 16.3284271,17 15.5,17 Z M5.5,17 C4.67157288,17 4,16.3284271 4,15.5 C4,14.6715729 4.67157288,14 5.5,14 C6.32842712,14 7,14.6715729 7,15.5 C7,16.3284271 6.32842712,17 5.5,17 Z" fill="currentColor" fill-rule="nonzero"></path>
+              </g>
+            </svg>
+            <div class="w-inline-block">Cart</div>
+            <div class="w-commerce-commercecartopenlinkcount cart-quantity-2">0</div>
+          </a>
         </div>
       </div>
     </div>
   </div>
 
-  {% if section.settings.align_logo == 'center' %}
+  {% comment %} {% if section.settings.align_logo == 'center' %}
   <nav class="small--hide border-bottom" id="AccessibleNav" role="navigation">
     {% include 'site-nav', linklist: section.settings.main_linklist, wrapper_class: 'site-nav--centered' %}
   </nav>
-  {% endif %}
+  {% endif %} {% endcomment %}
 </div>
 
 
