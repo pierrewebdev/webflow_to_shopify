@@ -1,4 +1,4 @@
-{%- if section.settings.hero_layout == 'full_width' and section.settings.hero_size == 'adapt' -%}
+{% comment %} {%- if section.settings.hero_layout == 'full_width' and section.settings.hero_size == 'adapt' -%}
   {%- if section.settings.image.aspect_ratio == blank -%}
     {%- assign min_aspect_ratio = 2.0 -%}
   {%- else -%}
@@ -10,10 +10,10 @@
       height: {{- wrapper_height -}}vw !important;
     }
   {%- endstyle -%}
-{%- endif -%}
+{%- endif -%} {% endcomment %}
 
 <!-- This section is where the hero component starts and is wrapped by a parent div under content_for_index-->
-<div data-section-id="{{ section.id }}" data-section-type="hero-section" class = "hero-image-component">
+{% comment %} <div data-section-id="{{ section.id }}" data-section-type="hero-section" class = "hero-image-component">
   {%- if section.settings.hero_layout == 'fixed_width' -%}
     <div class="page-width">
   {%- endif -%}
@@ -123,26 +123,47 @@
   {%- if section.settings.hero_layout == 'fixed_width' -%}
     </div>
   {%- endif -%}
-</div>
+</div> {% endcomment %}
 
 <!-- Hero component from Webflow Template-->
 <div class="section cc-store-home-wrap">
   <div class="intro-header">
     <div class="intro-content">
       <div class="intro-text">
-        <div class="heading-jumbo">Stylish Workout gear For Busy Moms<br></div>
+        <div class="heading-jumbo">{{ section.blocks[0].settings.hero_section_heading }}<br></div>
         <div class="paragraph-bigger cc-bigger-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis neque sapien.  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis neque sapien.<br></div>
       </div>
       <a href="#" class="cta-button cc-white-button w-inline-block">
         <div class="text-block">our collection</div>
       </a>
     </div>
-    <div class="header-image"><img src="{{ 'Woman-on-Exercise-Ball.jpg' | asset_url }}" loading="lazy" alt="" height = "578" width = "632" class="image"></div>
+    <div class="header-image"><img src="{{ 'Woman-on-Exercise-Ball.jpg' | asset_url }}" loading="lazy" alt="" width = "632" class="image"></div>
   </div>
 </div>
 
 {% schema %}
 {
+  "name": "Hero Section Above Fold",
+  "blocks": [
+    {
+      "type": "Heading",
+      "name": "Heading",
+      "settings": [
+        {
+          "type": "text",
+          "default": "Stylish Workout Gear For Busy Moms",
+          "id": "hero_section_heading",
+          "label": "Hero Section Heading"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+
+<!-- This is the old JSON for the previous hero-->
+{% comment %} {
   "name": {
     "cs": "Obrázek s textovým překryvem",
     "da": "Billede med tekstoverlejring",
@@ -858,5 +879,4 @@
       }
     }
   ]
-}
-{% endschema %}
+} {% endcomment %}

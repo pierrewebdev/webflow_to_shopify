@@ -215,14 +215,14 @@
   <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
 
   {%- if settings.enable_ajax -%}
-    {% render 'cart-popup' %}
+    {% include 'cart-popup' %}
   {%- endif -%}
 
   {% section 'header' %}
 
   <div class="page-container drawer-page-content" id="PageContainer">
 
-    <main class="main-content js-focus-hidden" id="MainContent" role="main" tabindex="-1">
+    <main>
       {{ content_for_layout }}
     </main>
 
