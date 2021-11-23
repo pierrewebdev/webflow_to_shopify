@@ -131,11 +131,11 @@
     <div class="intro-content">
       <div class="intro-text">
         <div class="heading-jumbo">{{ section.blocks[0].settings.hero_section_heading }}<br></div>
-        <div class="paragraph-bigger cc-bigger-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis neque sapien.  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis neque sapien.<br></div>
+        <div class="paragraph-bigger cc-bigger-light">{{ section.blocks[1].settings.hero_section_text }}<br></div>
       </div>
-      <a href="#" class="cta-button cc-white-button w-inline-block">
-        <div class="text-block">our collection</div>
-      </a>
+      {% comment %} <a href="{{ section.blocks[2].settings.hero_button_link }}" class="cta-button cc-white-button w-inline-block">
+        <div class="text-block">{{ section.blocks[2].settings.hero_button_text }}</div>
+      </a> {% endcomment %}
     </div>
     <div class="header-image"><img src="{{ 'Woman-on-Exercise-Ball.jpg' | asset_url }}" loading="lazy" alt="" width = "632" class="image"></div>
   </div>
@@ -146,7 +146,7 @@
   "name": "Hero Section Above Fold",
   "blocks": [
     {
-      "type": "Heading",
+      "type": "heading",
       "name": "Heading",
       "settings": [
         {
@@ -154,6 +154,36 @@
           "default": "Stylish Workout Gear For Busy Moms",
           "id": "hero_section_heading",
           "label": "Hero Section Heading"
+        }
+      ]
+    },
+    {
+      "type": "supporting_text",
+      "name": "Supporting Text",
+      "settings": [
+        {
+          "type": "textarea",
+          "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis neque sapien.  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis neque sapien.",
+          "id": "hero_section_text",
+          "label": "Hero Section Supporting Text"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Hero Button",
+      "settings": [
+        {
+          "type": "text",
+          "default": "Our Collection",
+          "id": "hero_button_text",
+          "label": "Button Text"
+        },
+        {
+          "type": "text",
+          "id": "hero_button_link",
+          "label": "Hero Button Link",
+          "info": "Where would you like to send people after they click?"
         }
       ]
     }
