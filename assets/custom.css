@@ -17,12 +17,13 @@
 /*For the menu bar icon in mobile header*/
 i.fas.fa-bars::after{
     content: "\f0c9";
+    font-size: 18px;
 }
 
 i.fas.fa-bars::before{
     content: "Menu";
     margin-right: 12px;
-    font-size: 30px;
+    font-size: 20px;
 }
 
 /*For the icons to the right of the header*/

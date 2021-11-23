@@ -11,7 +11,9 @@
     }
   {%- endstyle -%}
 {%- endif -%}
-<div data-section-id="{{ section.id }}" data-section-type="hero-section">
+
+<!-- This section is where the hero component starts and is wrapped by a parent div under content_for_index-->
+<div data-section-id="{{ section.id }}" data-section-type="hero-section" class = "hero-image-component">
   {%- if section.settings.hero_layout == 'fixed_width' -%}
     <div class="page-width">
   {%- endif -%}
@@ -121,6 +123,22 @@
   {%- if section.settings.hero_layout == 'fixed_width' -%}
     </div>
   {%- endif -%}
+</div>
+
+<!-- Hero component from Webflow Template-->
+<div class="section cc-store-home-wrap">
+  <div class="intro-header">
+    <div class="intro-content">
+      <div class="intro-text">
+        <div class="heading-jumbo">Stylish Workout gear For Busy Moms<br></div>
+        <div class="paragraph-bigger cc-bigger-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis neque sapien.  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis neque sapien.<br></div>
+      </div>
+      <a href="#" class="cta-button cc-white-button w-inline-block">
+        <div class="text-block">our collection</div>
+      </a>
+    </div>
+    <div class="header-image"><img src="{{ 'Woman-on-Exercise-Ball.jpg' | asset_url }}" loading="lazy" alt="" height = "578" width = "632" class="image"></div>
+  </div>
 </div>
 
 {% schema %}
