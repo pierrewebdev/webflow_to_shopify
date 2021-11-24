@@ -130,65 +130,56 @@
   <div class="intro-header">
     <div class="intro-content">
       <div class="intro-text">
-        <div class="heading-jumbo">{{ section.blocks[0].settings.hero_section_heading }}<br></div>
-        <div class="paragraph-bigger cc-bigger-light">{{ section.blocks[1].settings.hero_section_text }}<br></div>
+        <div class="heading-jumbo">{{ section.settings.hero_section_heading }}<br></div>
+        <div class="paragraph-bigger cc-bigger-light">{{ section.settings.hero_section_text }}<br></div>
       </div>
-       {%- unless section.blocks[2].settings.hero_button_text == blank -%}
-          <a href="{{ section.blocks[2].settings.hero_button_link }}" class="cta-button cc-white-button w-inline-block">
-            <div class="text-block">{{ section.blocks[2].settings.hero_button_text }}</div>
+       {%- unless section.settings.hero_button_text == blank -%}
+          <a href="{{ section.settings.hero_button_link }}" class="cta-button cc-white-button w-inline-block">
+            <div class="text-block">{{ section.settings.hero_button_text }}</div>
           </a>
        {%- endunless-%}
     </div>
-    <div class="header-image"><img src="{{ 'Woman-on-Exercise-Ball.jpg' | asset_url }}" loading="lazy" alt="" width = "632" class="image"></div>
+    {%- if section.settings.hero_section_image == null -%}
+      <div class="header-image"><img src="{{ 'Woman-on-Exercise-Ball.jpg' | asset_url }}" loading="lazy" alt="" width = "632" class="image"></div>
+    {%- else -%}
+    <div class="header-image"><img src="{{ section.settings.hero_section_image | img_url }}" loading="lazy" alt="" width = "632" class="image"></div>
+    {%- endif -%}
   </div>
 </div>
 
 {% schema %}
 {
   "name": "Hero Section Above Fold",
-  "max_blocks": 3,
-  "blocks": [
+  "settings": [
     {
-      "type": "Heading",
-      "name": "Heading",
-      "settings": [
-        {
-          "type": "text",
-          "default": "Stylish Workout Gear For Busy Moms",
-          "id": "hero_section_heading",
-          "label": "Hero Section Heading"
-        }
-      ]
+      "type": "image_picker",
+      "id": "hero_section_image",
+      "label": "Hero Section Image",
+      "info": "Pick your own image to use in the hero section. Please make sure you use an image that is at least bigger than 700px in width."
     },
     {
-      "type": "Supporting_text",
-      "name": "Supporting Text",
-      "settings": [
-        {
-          "type": "textarea",
-          "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis neque sapien.  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis neque sapien.",
-          "id": "hero_section_text",
-          "label": "Hero Section Supporting Text"
-        }
-      ]
+      "type": "text",
+      "default": "Stylish Workout Gear For Busy Moms",
+      "id": "hero_section_heading",
+      "label": "Hero Section Heading"
     },
     {
-      "type": "Button",
-      "name": "Hero Button",
-      "settings": [
-        {
-          "type": "text",
-          "default": "Our Collection",
-          "id": "hero_button_text",
-          "label": "Button Text"
-        },
-        {
-          "type": "text",
-          "id": "hero_button_link",
-          "label": "Hero Button Link",
-          "info": "Where would you like to send people after they click?"
-        }
-      ]
+      "type": "textarea",
+      "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis neque sapien.  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis neque sapien.",
+      "id": "hero_section_text",
+      "label": "Hero Section Supporting Text"
+    },
+    {
+      "type": "text",
+      "default": "Our Collection",
+      "id": "hero_button_text",
+      "label": "Button Text"
+    },
+    {
+      "type": "text",
+      "id": "hero_button_link",
+      "label": "Hero Button Link",
+      "info": "Where would you like to send people after they click?"
     }
   ]
 }
