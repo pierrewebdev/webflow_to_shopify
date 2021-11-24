@@ -133,9 +133,11 @@
         <div class="heading-jumbo">{{ section.blocks[0].settings.hero_section_heading }}<br></div>
         <div class="paragraph-bigger cc-bigger-light">{{ section.blocks[1].settings.hero_section_text }}<br></div>
       </div>
-      {% comment %} <a href="{{ section.blocks[2].settings.hero_button_link }}" class="cta-button cc-white-button w-inline-block">
-        <div class="text-block">{{ section.blocks[2].settings.hero_button_text }}</div>
-      </a> {% endcomment %}
+       {%- unless section.blocks[2].settings.hero_button_text == blank -%}
+          <a href="{{ section.blocks[2].settings.hero_button_link }}" class="cta-button cc-white-button w-inline-block">
+            <div class="text-block">{{ section.blocks[2].settings.hero_button_text }}</div>
+          </a>
+       {%- endunless-%}
     </div>
     <div class="header-image"><img src="{{ 'Woman-on-Exercise-Ball.jpg' | asset_url }}" loading="lazy" alt="" width = "632" class="image"></div>
   </div>
@@ -144,9 +146,10 @@
 {% schema %}
 {
   "name": "Hero Section Above Fold",
+  "max_blocks": 3,
   "blocks": [
     {
-      "type": "heading",
+      "type": "Heading",
       "name": "Heading",
       "settings": [
         {
@@ -158,7 +161,7 @@
       ]
     },
     {
-      "type": "supporting_text",
+      "type": "Supporting_text",
       "name": "Supporting Text",
       "settings": [
         {
@@ -170,7 +173,7 @@
       ]
     },
     {
-      "type": "button",
+      "type": "Button",
       "name": "Hero Button",
       "settings": [
         {
@@ -910,3 +913,48 @@
     }
   ]
 } {% endcomment %}
+
+{% comment %} "blocks": [
+  {
+    "type": "Heading",
+    "name": "Heading",
+    "settings": [
+      {
+        "type": "text",
+        "default": "Stylish Workout Gear For Busy Moms",
+        "id": "hero_section_heading",
+        "label": "Hero Section Heading"
+      }
+    ]
+  },
+  {
+    "type": "Supporting_text",
+    "name": "Supporting Text",
+    "settings": [
+      {
+        "type": "textarea",
+        "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis neque sapien.  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis neque sapien.",
+        "id": "hero_section_text",
+        "label": "Hero Section Supporting Text"
+      }
+    ]
+  },
+  {
+    "type": "Button",
+    "name": "Hero Button",
+    "settings": [
+      {
+        "type": "text",
+        "default": "Our Collection",
+        "id": "hero_button_text",
+        "label": "Button Text"
+      },
+      {
+        "type": "text",
+        "id": "hero_button_link",
+        "label": "Hero Button Link",
+        "info": "Where would you like to send people after they click?"
+      }
+    ]
+  }
+] {% endcomment %}
