@@ -86,3 +86,16 @@ i.fas.fa-bars::before{
 .desktop.navigation.w-nav{
     z-index: 1;
 }
+
+/*Custom CSS in Featured Image Section*/
+
+.feature-row__image{
+    border-radius: 12px;
+}
+
+#shopify-section-feature-row{
+    background-color: #f7f7f7;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    text-transform: capitalize;
+}
