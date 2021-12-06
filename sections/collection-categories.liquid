@@ -6,14 +6,32 @@
       </div>
       <div class="column w-col w-col-8 w-col-medium-6">
         <a href="#" class="collection-link w-inline-block">
-          <div class="collection-div"><img src="{{ 'Women-in-fitness-clothing.png' | asset_url }}" loading = "lazy" alt = "" class="image-5">
+          <div class="collection-div">
+            <img src="{{ section.settings.collection-1.image | img_url: '331x291' }}"
+            loading = "lazy"
+            alt = ""
+            height = "291"
+            width = "331"
+            data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+            data-aspectratio="{{ section.settings.image.aspect_ratio }}"
+            data-sizes="auto"
+            class="image-5">
             <div class="collection-info">
               <p class="collection-text">Women&#x27;s Athleisure Clothing</p>
             </div>
           </div>
         </a>
         <a href="#" class="collection-link w-inline-block">
-          <div class="collection-div"><img src="{{ 'Workout-Equipment-Category-img.png' | asset_url }}"  alt="" class="image-6">
+          <div class="collection-div">
+            <img src="{{ section.settings.collection-2.image | img_url: '331x291' }}"
+            loading = "lazy"
+            alt=""
+            height = "291"
+            width = "331"
+            data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+            data-aspectratio="{{ section.settings.image.aspect_ratio }}"
+            data-sizes="auto"
+            class="image-6">
             <div class="collection-info">
               <p class="collection-text">Home Workout Equipment</p>
             </div>
@@ -21,13 +39,15 @@
         </a>
       </div>
     </div>
+
+    {%comment%} Div below only shows up on tablet and mobile devices {%endcomment%}
     <div class="container-3 w-container">
       <h2 class="heading-6">Helping Busy Moms Get Fit</h2>
       <p class="paragraph-7">Whether you need fitness clothing or home workout equipment, we got you!</p>
       <div class="w-row">
         <div class="w-col w-col-6">
           <a href="#" class="collection-link w-inline-block">
-            <div class="collection-div"><img src="{{ 'Woman-in-fitness-clothing.png' | asset_url }}" loading = "lazy" alt="">
+            <div class="collection-div"><img src="{{ section.settings.collection-1.image | img_url: '331x291' }}" loading = "lazy" alt="">
               <div class="collection-info">
                 <p class="collection-text">Women&#x27;s Athleisure Clothing</p>
               </div>
@@ -36,7 +56,7 @@
         </div>
         <div class="w-col w-col-6">
           <a href="#" class="collection-link w-inline-block">
-            <div class="collection-div"><img src="{{ 'Workout-Equipment-Category-img.png' | asset_url }}" loading = "lazy" alt="">
+            <div class="collection-div"><img src="{{ section.settings.collection-2.image | img_url: '331x291' }}" loading = "lazy" alt="">
               <div class="collection-info">
                 <p class="collection-text">Home Workout Equipment</p>
               </div>
