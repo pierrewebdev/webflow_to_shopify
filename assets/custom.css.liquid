@@ -87,6 +87,11 @@ i.fas.fa-bars::before{
     z-index: 1;
 }
 
+/*CSS for H1 in Her Section*/
+/* .intro-header .heading-jumbo{
+    font-family: {{ settings.type_header_font }} ;
+} */
+
 /*Custom CSS in Featured Image Section*/
 
 .feature-row__image{
@@ -98,4 +103,20 @@ i.fas.fa-bars::before{
     padding-top: 60px;
     padding-bottom: 60px;
     text-transform: capitalize;
+}
+
+/*CSS for Product Grid in Collection Section*/
+@media only screen and (min-width: 750px){
+    ul.grid{
+        margin: 0 auto;
+    }
+
+    ul.grid li.grid__item{
+        width: 30%;
+        margin: 0 10px;
+    }
+
+    ul.grid li.grid__item img, .placeholder-svg{
+        border-radius: 12px;
+    }
 }

@@ -1,0 +1,77 @@
+<div class="section-3 wf-section">
+    <div class="columns-2 w-row">
+      <div class="w-col w-col-4 w-col-medium-6">
+        <h2 class="heading-3">Helping Busy Moms Get Fit</h2>
+        <p class="paragraph">Whether you need fitness clothing or home workout equipment, we got you!</p>
+      </div>
+      <div class="column w-col w-col-8 w-col-medium-6">
+        <a href="#" class="collection-link w-inline-block">
+          <div class="collection-div"><img src="{{ 'Women-in-fitness-clothing.png' | asset_url }}" loading = "lazy" alt = "" class="image-5">
+            <div class="collection-info">
+              <p class="collection-text">Women&#x27;s Athleisure Clothing</p>
+            </div>
+          </div>
+        </a>
+        <a href="#" class="collection-link w-inline-block">
+          <div class="collection-div"><img src="{{ 'Workout-Equipment-Category-img.png' | asset_url }}"  alt="" class="image-6">
+            <div class="collection-info">
+              <p class="collection-text">Home Workout Equipment</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="container-3 w-container">
+      <h2 class="heading-6">Helping Busy Moms Get Fit</h2>
+      <p class="paragraph-7">Whether you need fitness clothing or home workout equipment, we got you!</p>
+      <div class="w-row">
+        <div class="w-col w-col-6">
+          <a href="#" class="collection-link w-inline-block">
+            <div class="collection-div"><img src="{{ 'Woman-in-fitness-clothing.png' | asset_url }}" loading = "lazy" alt="">
+              <div class="collection-info">
+                <p class="collection-text">Women&#x27;s Athleisure Clothing</p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="w-col w-col-6">
+          <a href="#" class="collection-link w-inline-block">
+            <div class="collection-div"><img src="{{ 'Workout-Equipment-Category-img.png' | asset_url }}" loading = "lazy" alt="">
+              <div class="collection-info">
+                <p class="collection-text">Home Workout Equipment</p>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+{% schema %}
+  {
+    "name": "Collection Categories",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Helping Busy Moms Get Fit"
+      },
+      {
+        "type": "collection",
+        "id": "collection-1",
+        "label": "Collection 1"
+      },
+      {
+        "type": "collection",
+        "id": "collection-2",
+        "label": "Collection 2"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Collection Categories"
+      }
+    ]
+  }
+
+{% endschema %}
