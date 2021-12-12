@@ -1,74 +1,68 @@
+{%comment%}
+ This Liquid Style tag is used to adjust the layout of this section if there is only one collection selected
+{%endcomment%}
+
+{% assign collection_count = 0 %}
+
+{% for i in (1..2) %}
+  {% if section.settings.collection-1 %}
+    {%- assign collection_count = collection_count | plus: 1 -%}
+  {% elsif section.settings.collection-2 %}
+  {%- assign collection_count = collection_count | plus: 1 -%}
+  {% endif %}
+{% endfor %}
+
 <div class="section-3 wf-section">
-    <div class="columns-2 w-row">
+    <div class="columns-2 w-row ">
       <div class="w-col w-col-4 w-col-medium-6">
-        <h2 class="heading-3">Helping Busy Moms Get Fit</h2>
-        <p class="paragraph">Whether you need fitness clothing or home workout equipment, we got you!</p>
+        <h2 class="heading-3">{{ section.settings.title }}</h2>
+        <p class="paragraph">{{ section.settings.supporting_text }}</p>
       </div>
       <div class="column w-col w-col-8 w-col-medium-6">
-        <a href="{{section.settings.collection-1.url }}" class="collection-link w-inline-block">
-          <div class="collection-div">
-            <img src="{{ section.settings.collection-1.image | img_url: '431x391' }}"
-            loading = "lazy"
-            alt = ""
-            height = "291"
-            width = "331"
-            data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
-            data-aspectratio="{{ section.settings.image.aspect_ratio }}"
-            data-sizes="auto"
-            class="image-5">
-            <div class="collection-info">
-              <p class="collection-text">{{section.settings.collection-1.title}}</p>
+        {% for block in section.blocks %}
+          <a href="{{block.settings.collection.url }}" class="collection-link w-inline-block">
+            <div class="collection-div">
+              <img src="{{ block.settings.collection | img_url: '431x391' }}"
+              loading = "lazy"
+              alt = ""
+              height = "291"
+              width = "331"
+              data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+              data-aspectratio="{{ section.settings.image.aspect_ratio }}"
+              data-sizes="auto"
+              class="image-5">
+              <div class="collection-info">
+                <p class="collection-text">{{ block.settings.collection.title }}</p>
+              </div>
             </div>
-          </div>
-        </a>
-        <a href="{{section.settings.collection-2.url }}" class="collection-link w-inline-block">
-          <div class="collection-div">
-            <img src="{{ section.settings.collection-2.image | img_url: '431x391' }}"
-            loading = "lazy"
-            alt=""
-            height = "291"
-            width = "331"
-            data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
-            data-aspectratio="{{ section.settings.image.aspect_ratio }}"
-            data-sizes="auto"
-            class="image-6">
-            <div class="collection-info">
-              <p class="collection-text">{{section.settings.collection-2.title}}</p>
-            </div>
-          </div>
-        </a>
+          </a>
+        {% endfor %}
       </div>
     </div>
 
     {%comment%} Div below only shows up on tablet and mobile devices {%endcomment%}
     <div class="container-3 w-container">
-      <h2 class="heading-6">Helping Busy Moms Get Fit</h2>
-      <p class="paragraph-7">Whether you need fitness clothing or home workout equipment, we got you!</p>
+      <h2 class="heading-6">{{ section.settings.title }}</h2>
+      <p class="paragraph-7">{{ section.settings.supporting_text }}</p>
       <div class="w-row">
-        <div class="w-col w-col-6">
-          <a href="{{section.settings.collection-1.url }}" class="collection-link w-inline-block">
-            <div class="collection-div"><img src="{{ section.settings.collection-1.image | img_url: '331x291' }}" loading = "lazy" alt="">
-              <div class="collection-info">
-                <p class="collection-text">Women&#x27;s Athleisure Clothing</p>
+        {% for block in section.blocks %}
+          <div class="w-col w-col-6">
+            <a href="{{ block.settings.collection.url }}" class="collection-link w-inline-block">
+              <div class="collection-div"><img src="{{ block.settings.collection.image | img_url: '331x291' }}" loading = "lazy" alt="">
+                <div class="collection-info">
+                  <p class="collection-text">{{ block.settings.collection.title }}</p>
+                </div>
               </div>
-            </div>
-          </a>
-        </div>
-        <div class="w-col w-col-6">
-          <a href="{{section.settings.collection-2.url }}" class="collection-link w-inline-block">
-            <div class="collection-div"><img src="{{ section.settings.collection-2.image | img_url: '331x291' }}" loading = "lazy" alt="">
-              <div class="collection-info">
-                <p class="collection-text">Home Workout Equipment</p>
-              </div>
-            </div>
-          </a>
-        </div>
+            </a>
+          </div>
+        {% endfor %}
       </div>
     </div>
 
 {% schema %}
   {
     "name": "Collection Categories",
+    "max_blocks": 2,
     "settings": [
       {
         "type": "text",
@@ -77,14 +71,23 @@
         "default": "Helping Busy Moms Get Fit"
       },
       {
-        "type": "collection",
-        "id": "collection-1",
-        "label": "Collection 1"
-      },
+        "type": "text",
+        "id": "supporting_text",
+        "label": "Text Under Title",
+        "default": "Whether you need fitness clothing or home workout equipment, we got you!"
+      }
+    ],
+    "blocks": [
       {
-        "type": "collection",
-        "id": "collection-2",
-        "label": "Collection 2"
+        "name": "Collection Category",
+        "type": "collection_list",
+        "settings": [
+          {
+            "type": "collection",
+            "id": "collection",
+            "label": "Collection"
+          }
+        ]
       }
     ],
     "presets": [

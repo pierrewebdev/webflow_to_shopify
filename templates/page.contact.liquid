@@ -1,4 +1,104 @@
-<div class="page-width">
+<div class="wf-section">
+  <h1 class="heading-7">{{ page.title }}</h1>
+</div>
+
+<div class="contact-content">
+  {% if page.content.size > 0 %}
+    <div class="rte">
+      {{ page.content }}
+    </div>
+  {% endif %}
+</div>
+
+<div class="section-8 wf-section">
+  <div class="w-layout-grid grid-5">
+  <h2 id="w-node-_9be16e0a-efe6-64c1-0252-ffc59d836048-7ebd653b" class="heading-19">We&#x27;re Here To Help</h2>
+  <h2 id="w-node-_633d44b3-93e2-8a4d-1749-8cddf103b41c-7ebd653b" class="heading-16">Want to Get In Touch?</h2>
+  <div class="w-layout-grid grid-6">
+      <div class="icon-box">
+      <div class="icon-container"><i class="fas fa-phone"></i></div>
+      <h3 class="heading-17">Phone Number</h3>
+      <p class="paragraph-10">800-123-4567</p>
+      </div>
+      <div class="icon-box">
+      <div class="icon-container"><i class="fas fa-envelope"></i></div>
+      <h3 class="heading-17">Email</h3>
+      <p class="paragraph-10">info@fitmom.com</p>
+      </div>
+      <div class="icon-box">
+      <div class="icon-container"><i class="fas fa-map-marker-alt"></i></div>
+      <h3 class="heading-17">Location</h3>
+      <p class="paragraph-10">972 Westheimer Rd. Santa Ana, Illinois 85486<br></p>
+      </div>
+      <div class="icon-box">
+      <div class="icon-container"><i class="fas fa-clock"></i></i></div>
+      <h3 class="heading-17">Hours Open</h3>
+      <p class="paragraph-10">Mon-Fri: 9 am- 6 pm<br>Sat: 9 am - 4 pm<br>Sun: 9 am - 2 pm</p>
+      </div>
+  </div>
+    <div id="w-node-_5112921c-3b93-6cc8-06a6-538314bfe2ae-7ebd653b" class="div-block-7">
+      <div class="contact-form form-vertical">
+        {%- assign formId = 'ContactForm' -%}
+        {% form 'contact', id: formId %}
+          {% include 'form-status', form: form, form_id: formId %}
+
+          <div class="grid grid--half-gutters">
+            <div class="grid__item medium-up--one-half">
+              <label for="{{ formId }}-name">{{ 'contact.form.name' | t }}</label>
+              <input type="text" id="{{ formId }}-name" name="contact[{{ 'contact.form.name' | t }}]" value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}">
+            </div>
+            <div class="grid__item medium-up--one-half">
+              <label for="{{ formId }}-email">{{ 'contact.form.email' | t }} <span aria-hidden="true">*</span></label>
+              <input
+                type="email"
+                id="{{ formId }}-email"
+                name="contact[email]"
+                autocorrect="off"
+                autocapitalize="off"
+                value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                aria-required="true"
+                {%- if form.errors contains 'email' -%}
+                  class="input--error"
+                  aria-invalid="true"
+                  aria-describedby="{{ formId }}-email-error"
+                {%- endif -%}
+                >
+              {%- if form.errors contains 'email' -%}
+                <span id="{{ formId}}-email-error" class="input-error-message">
+                  <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+                  {% include 'icon-error' %}
+                  <span>{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
+                </span>
+              {%- endif -%}
+            </div>
+          </div>
+
+          <label for="{{ formId }}-phone">{{ 'contact.form.phone' | t }}</label>
+          <input type="tel" id="{{ formId }}-phone" name="contact[{{ 'contact.form.phone' | t }}]" pattern="[0-9\-]*" value="{% if form[phone] %}{{ form[phone] }}{% elsif customer %}{{ customer.phone }}{% endif %}">
+
+          <label for="{{ formId }}-message">{{ 'contact.form.message' | t }}</label>
+          <textarea rows="10" id="{{ formId }}-message" name="contact[{{ 'contact.form.message' | t }}]">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+
+          <input type="submit" class="btn" value="{{ 'contact.form.submit' | t }}">
+
+        {% endform %}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="page-width">
   <div class="grid">
     <div class="grid__item medium-up--five-sixths medium-up--push-one-twelfth">
       <div class="section-header text-center">
@@ -59,4 +159,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
