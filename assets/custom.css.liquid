@@ -93,7 +93,6 @@ i.fas.fa-bars::before{
 } */
 
 /*Custom CSS in Featured Image Section*/
-
 .feature-row__image{
     border-radius: 12px;
 }
@@ -140,4 +139,31 @@ i.fas.fa-bars::before{
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+/*CSS for Collection Categories Liquid*/
+
+.one-collection .w-col-4{
+    width: 40%;
+}
+
+.one-collection .w-col-8{
+    width: 60%;
+    justify-content: center;
+}
+
+.one-collection .w-row{
+    display: flex;
+    justify-content: center;
+}
+
+ @media screen and (max-width: 991px){
+    .one-collection .w-row{
+        display: none;
+    }
+
+    .one-collection .mobile{
+        display:flex;
+        justify-content: center;
+    }
 }

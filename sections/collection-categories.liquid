@@ -1,18 +1,70 @@
 {%comment%}
  This Liquid Style tag is used to adjust the layout of this section if there is only one collection selected
+
+ 1. I already made this section support the use of blocks for the collection categories
+
+2. Now all I need to do is create a layout for the situation in which only one selection is chosen by using the collection_count liquid variable
 {%endcomment%}
 
-{% assign collection_count = 0 %}
+{%- assign collection_count = 0 -%}
 
-{% for i in (1..2) %}
-  {% if section.settings.collection-1 %}
+{%- for block in section.blocks -%}
+  {%- if block.settings.collection.id -%}
     {%- assign collection_count = collection_count | plus: 1 -%}
-  {% elsif section.settings.collection-2 %}
-  {%- assign collection_count = collection_count | plus: 1 -%}
-  {% endif %}
-{% endfor %}
+  {%- endif -%}
+{%- endfor -%}
 
-<div class="section-3 wf-section">
+<!-- This Block of code works for situations in which 2 collections are chosen-->
+{%-if collection_count == 2 -%}
+  <div class="section-3 wf-section">
+      <div class="columns-2 w-row ">
+        <div class="w-col w-col-4 w-col-medium-6">
+          <h2 class="heading-3">{{ section.settings.title }}</h2>
+          <p class="paragraph">{{ section.settings.supporting_text }}</p>
+        </div>
+        <div class="column w-col w-col-8 w-col-medium-6">
+          {% for block in section.blocks %}
+            <a href="{{block.settings.collection.url }}" class="collection-link w-inline-block">
+              <div class="collection-div">
+                <img src="{{ block.settings.collection | img_url: '431x391' }}"
+                loading = "lazy"
+                alt = ""
+                height = "291"
+                width = "331"
+                data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                data-aspectratio="{{ section.settings.image.aspect_ratio }}"
+                data-sizes="auto"
+                class="image-5">
+                <div class="collection-info">
+                  <p class="collection-text">{{ block.settings.collection.title }}</p>
+                </div>
+              </div>
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+
+      {%comment%} Div below only shows up on tablet and mobile devices {%endcomment%}
+      <div class="container-3 w-container">
+        <h2 class="heading-6">{{ section.settings.title }}</h2>
+        <p class="paragraph-7">{{ section.settings.supporting_text }}</p>
+        <div class="w-row">
+          {% for block in section.blocks %}
+            <div class="w-col w-col-6">
+              <a href="{{ block.settings.collection.url }}" class="collection-link w-inline-block">
+                <div class="collection-div"><img src="{{ block.settings.collection.image | img_url: '331x291' }}" loading = "lazy" alt="">
+                  <div class="collection-info">
+                    <p class="collection-text">{{ block.settings.collection.title }}</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+  </div>
+{%- elsif collection_count == 1 -%}
+  <div class="section-3 wf-section one-collection">
     <div class="columns-2 w-row ">
       <div class="w-col w-col-4 w-col-medium-6">
         <h2 class="heading-3">{{ section.settings.title }}</h2>
@@ -20,44 +72,55 @@
       </div>
       <div class="column w-col w-col-8 w-col-medium-6">
         {% for block in section.blocks %}
-          <a href="{{block.settings.collection.url }}" class="collection-link w-inline-block">
-            <div class="collection-div">
-              <img src="{{ block.settings.collection | img_url: '431x391' }}"
-              loading = "lazy"
-              alt = ""
-              height = "291"
-              width = "331"
-              data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
-              data-aspectratio="{{ section.settings.image.aspect_ratio }}"
-              data-sizes="auto"
-              class="image-5">
-              <div class="collection-info">
-                <p class="collection-text">{{ block.settings.collection.title }}</p>
-              </div>
-            </div>
-          </a>
-        {% endfor %}
-      </div>
-    </div>
-
-    {%comment%} Div below only shows up on tablet and mobile devices {%endcomment%}
-    <div class="container-3 w-container">
-      <h2 class="heading-6">{{ section.settings.title }}</h2>
-      <p class="paragraph-7">{{ section.settings.supporting_text }}</p>
-      <div class="w-row">
-        {% for block in section.blocks %}
-          <div class="w-col w-col-6">
-            <a href="{{ block.settings.collection.url }}" class="collection-link w-inline-block">
-              <div class="collection-div"><img src="{{ block.settings.collection.image | img_url: '331x291' }}" loading = "lazy" alt="">
+          {%- if block.settings.collection.id -%}
+            <a href="{{block.settings.collection.url }}" class="collection-link w-inline-block">
+              <div class="collection-div">
+                <img src="{{ block.settings.collection | img_url: '431x391' }}"
+                loading = "lazy"
+                alt = ""
+                height = "291"
+                width = "331"
+                data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                data-aspectratio="{{ section.settings.image.aspect_ratio }}"
+                data-sizes="auto"
+                class="image-5">
                 <div class="collection-info">
                   <p class="collection-text">{{ block.settings.collection.title }}</p>
                 </div>
               </div>
             </a>
-          </div>
+          {%- endif -%}
         {% endfor %}
       </div>
     </div>
+
+    {%comment%} Div below only shows up on tablet and mobile devices {%endcomment%}
+    <div class="container-3 w-container one-collection">
+      <h2 class="heading-6">{{ section.settings.title }}</h2>
+      <p class="paragraph-7">{{ section.settings.supporting_text }}</p>
+      <div class="w-row mobile">
+        {% for block in section.blocks %}
+          {%- if block.settings.collection.id -%}
+            <div class="w-col w-col-6">
+              <a href="{{ block.settings.collection.url }}" class="collection-link w-inline-block">
+                <div class="collection-div"><img src="{{ block.settings.collection.image | img_url: '331x291' }}" loading = "lazy" alt="">
+                  <div class="collection-info">
+                    <p class="collection-text">{{ block.settings.collection.title }}</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+          {%- endif -%}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+
+
+<!-- This block of code works for situations in which 1 collection is chosen-->
+
 
 {% schema %}
   {

@@ -4133,8 +4133,8 @@
   .columns-2 {
     margin-right: 60px;
     margin-left: 60px;
-    padding-right: 0px;
-    padding-left: 0px;
+    padding-right: 20px;
+    padding-left: 20px;
   }
   
   .collection-div {
@@ -5868,5 +5868,3 @@
       grid-area: Size-Guide;
     }
   }
-  
-  
