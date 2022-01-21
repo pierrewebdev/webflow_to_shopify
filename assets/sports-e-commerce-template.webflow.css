@@ -2803,14 +2803,7 @@
     font-weight: 600;
     text-align: center;
   }
-  
-  .cta-button.cc-white-button:hover {
-    background-color: hsla(0, 0%, 100%, 0.8);
-  }
-  
-  .cta-button.cc-white-button:active {
-    background-color: hsla(0, 0%, 100%, 0.9);
-  }
+
   
   .cta-button.cc-add-to-cart-btn {
     margin-top: 10px;

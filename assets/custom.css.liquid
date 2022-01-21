@@ -182,7 +182,7 @@ i.fas.fa-bars::before{
     border-bottom: none;
 }
 
-/*CSS for page that lists out all Collections*/
+/*CSS for page that lists out all Collections and for collection template page*/
 
 .collections-page{
     padding:0;
@@ -203,6 +203,15 @@ i.fas.fa-bars::before{
     column-gap: 20px;
 }
 
+ .h4.grid-view-item__title.product-card__title{
+    display: flex;
+    justify-content: center;
+}
+
+.price{
+    align-items: center;
+}
+
 @media screen and (max-width: 768px){
     .collections-grid{
         grid-template-columns: 75%;
@@ -212,4 +221,48 @@ i.fas.fa-bars::before{
 
 .collections-grid .collection-grid-item__title-wrapper:before{
     border-radius: 8px;
+}
+
+#Collection{
+    padding:0;
+    max-width: 100%;
+}
+
+#Collection ul.collections-grid{
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 20px;
+    background-color: #f7f7f7;
+}
+
+#Collection .collections-grid img{
+    border-radius: 7px;
+}
+
+.collection-hero{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+@media only screen and (min-width: 750px){
+    .collection-hero{
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}
+
+.filters-toolbar-wrapper{
+    margin-bottom: 0;
+    padding: 0 55px;
+    border-top: solid 2px #e2e1e1;
+    border-bottom: solid 1px #e2e1e1;
+}
+
+/*CSS for Product Page*/
+.return-link-wrapper{
+    margin: 50px;
+}
+
+.product-template__container .price{
+    align-items: flex-start;
 }
