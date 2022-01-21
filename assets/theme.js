@@ -6823,7 +6823,7 @@ theme.Cart = (function() {
           function() {
             this._showCartError(null);
               //Until I figure out this issue I will just trigger a refresh of the page after 5 seconds
-            setTimeout(window.location.reload(),3000);
+            // setTimeout(window.location.reload(),3000);
           }.bind(this)
         );
 
