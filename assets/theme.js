@@ -6762,6 +6762,8 @@ theme.Cart = (function() {
       var key = itemElement.getAttribute(attributes.cartItemKey);
       var index = Number(itemElement.getAttribute(attributes.cartItemIndex));
 
+      //the value of the quantity is good
+
       var request = {
         method: 'POST',
         headers: {
@@ -6820,8 +6822,11 @@ theme.Cart = (function() {
         .catch(
           function() {
             this._showCartError(null);
+              //Until I figure out this issue I will just trigger a refresh of the page after 5 seconds
+            setTimeout(window.location.reload(),3000);
           }.bind(this)
         );
+
     },
 
     getItem: function(key, state) {
