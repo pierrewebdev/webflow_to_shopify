@@ -3,6 +3,14 @@
     color: white !important;
 }
 
+/*Centers main navigation menu Website Title on 991px viewport width and smaller*/
+@media screen and (max-width:990px){
+    .site-header__logo{
+        display: flex;
+        justify-content: center;
+    }
+}
+
 /*Makes nav links in header white*/
 .navigation-wrap nav a {
     color: #fafafa !important;
@@ -166,4 +174,42 @@ i.fas.fa-bars::before{
         display:flex;
         justify-content: center;
     }
+}
+
+/*CSS to change behavior of product cards on hover*/
+
+.product-card:hover .product-card__title{
+    border-bottom: none;
+}
+
+/*CSS for page that lists out all Collections*/
+
+.collections-page{
+    padding:0;
+    max-width: 100%;
+    padding: 0;
+}
+
+.collections-page header{
+    margin: 0;
+    padding: 40px 0;
+    background-color: #f7f7f7;
+}
+
+.collections-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 0 40px;
+    column-gap: 20px;
+}
+
+@media screen and (max-width: 768px){
+    .collections-grid{
+        grid-template-columns: 75%;
+        justify-content: center;
+    }
+}
+
+.collections-grid .collection-grid-item__title-wrapper:before{
+    border-radius: 8px;
 }
