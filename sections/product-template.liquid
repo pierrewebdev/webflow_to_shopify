@@ -137,9 +137,38 @@
         <h1 class="product-single__title">{{ product.title }}</h1>
         <script>window.performance.mark('debut:product:title_visible');</script>
 
+        <div class="product-single__description rte">
+          {{ product.description }}
+        </div>
+
           <div class="product__price">
             {% include 'product-price', variant: current_variant, show_vendor: section.settings.show_vendor %}
           </div>
+
+          {%comment%}
+            Inserting code from webflow template here for sizing and sizing guide
+          {%endcomment%}
+
+            <div class="product__size-container">
+              <div class="product__size-title">Size: S</div>
+              <div class="product__size-options">
+                  <div>
+                    <ul role="list" class="size-box-container w-list-unstyled">
+                      <li class="size-box">S</li>
+                      <li class="size-box">M</li>
+                      <li class="size-box">L</li>
+                      <li class="size-box">XL</li>
+                    </ul>
+                </div>
+                <a href="#" class="product__size-link">Size Guide</a>
+            </div>
+            </div>
+
+            <div class="product-quantity">
+              <div class="product-quantity-elem minus">-</div>
+              <div class="product-quantity-elem">1</div>
+              <div class="product-quantity-elem plus">+</div>
+            </div>
 
           {%- if cart.taxes_included or shop.shipping_policy.body != blank -%}
             <div class="product__policies rte" data-product-policies>
@@ -269,9 +298,9 @@
         >
         </div>
 
-        <div class="product-single__description rte">
+        {% comment %} <div class="product-single__description rte">
           {{ product.description }}
-        </div>
+        </div> {% endcomment %}
 
         {% if section.settings.show_share_buttons %}
           {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product.featured_media %}
