@@ -164,12 +164,6 @@
             </div>
             </div>
 
-            <div class="product-quantity">
-              <div class="product-quantity-elem minus">-</div>
-              <div class="product-quantity-elem">1</div>
-              <div class="product-quantity-elem plus">+</div>
-            </div>
-
           {%- if cart.taxes_included or shop.shipping_policy.body != blank -%}
             <div class="product__policies rte" data-product-policies>
               {%- if cart.taxes_included -%}
@@ -226,7 +220,8 @@
                   <label for="Quantity-{{ section.id }}">{{ 'products.product.quantity' | t }}</label>
                   <input type="number" id="Quantity-{{ section.id }}"
                     name="quantity" value="1" min="1" pattern="[0-9]*"
-                    class="product-form__input product-form__input--quantity" data-quantity-input
+                    class="product-form__input product-form__input--quantity"
+                    data-quantity-input
                   >
                 </div>
               </div>
@@ -372,7 +367,7 @@
         "zh-CN": "显示数量选择器",
         "zh-TW": "顯示數量選擇器"
       },
-      "default": false
+      "default": true
     },
     {
       "type": "checkbox",
